@@ -23,7 +23,6 @@
     // Handle file write error
   }
 
-  writer.close();
-  outputStream.close();
+  writer.close(); 
 
 %>Done
