@@ -19,10 +19,10 @@
   // Write the Post Data content to a file
   try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/bnet/ROOT/file.txt")) {
     fileWriter.write(postData);
+     
   } catch (IOException e) {
     // Handle file write error
   }
 
-  writer.close(); 
 
 %>Done
