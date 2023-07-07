@@ -22,7 +22,11 @@
 
   } catch (IOException e) {
     // Handle file write error
-    %><%=e.printStackTrace()%><%
+    StringWriter stringWriter = new StringWriter();
+    PrintWriter printWriter = new PrintWriter(stringWriter);
+    e.printStackTrace(printWriter);
+    String stackTrace = stringWriter.toString();
+    %><%= stackTrace %><%
   }
 
 
