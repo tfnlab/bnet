@@ -1,6 +1,12 @@
 <%@ page import="java.util.*,java.io.*, java.net.*" %>
 <%@ page import="java.net.URLEncoder" %>
-<% 
+<%
+
+  // Generate a UUID
+  String uuid = UUID.randomUUID().toString();
+
+  // Set the file name using the UUID
+  String fileName = uuid + ".txt";
 
   // Iterate through the request parameters and add them to the POST data
   String postData = "Data Request";
@@ -18,7 +24,7 @@
   postData += requestBody.toString();
 
   // Write the Post Data content to a file
-  try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/file.txt")) {
+  try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/" + fileName)) {
     fileWriter.write(postData);
 
   } catch (IOException e) {
@@ -29,6 +35,5 @@
     String stackTrace = stringWriter.toString();
     %><%= stackTrace %><%
   }
-
 
 %>Done
