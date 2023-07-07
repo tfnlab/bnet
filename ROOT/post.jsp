@@ -1,20 +1,21 @@
 <%@ page import="java.util.*,java.io.*, java.net.*" %>
 <%@ page import="java.net.URLEncoder" %>
-<%
-  // Get the map of all the request parameters and their values
-  Map<String, String[]> parameterMap = request.getParameterMap();
-
-  // Set up the URL and the connection to the t
+<% 
 
   // Iterate through the request parameters and add them to the POST data
   String postData = "Data Request";
 
-  Enumeration<String> parameterNames = request.getParameterNames();
-  while (parameterNames.hasMoreElements()) {
-    String parameterName = parameterNames.nextElement();
-    String parameterValue = request.getParameter(parameterName);
-    postData += parameterName + "=" + parameterValue + "&";
+  // Read the request body
+  BufferedReader reader = request.getReader();
+  StringBuilder requestBody = new StringBuilder();
+  String line;
+  while ((line = reader.readLine()) != null) {
+    requestBody.append(line);
   }
+  reader.close();
+
+  // Parse the request body as JSON
+  postData += requestBody.toString();
 
   // Write the Post Data content to a file
   try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/file.txt")) {
