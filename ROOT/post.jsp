@@ -7,7 +7,7 @@
   // Set up the URL and the connection to the t
 
   // Iterate through the request parameters and add them to the POST data
-  String postData = "";
+  String postData = "Data Request";
 
   Enumeration<String> parameterNames = request.getParameterNames();
   while (parameterNames.hasMoreElements()) {
