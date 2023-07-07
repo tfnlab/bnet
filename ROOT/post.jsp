@@ -17,7 +17,7 @@
   }
 
   // Write the Post Data content to a file
-  try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/file.txt")) {
+  try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/file.txt")) {
     fileWriter.write(postData);
 
   } catch (IOException e) {
