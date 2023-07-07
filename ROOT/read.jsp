@@ -15,7 +15,7 @@
             if (files != null) {
                 for (java.io.File file : files) {
                     if (file.isFile()) {
-                        out.println("<li><a href=\"rf.jsp?filename=" + file.getName() + "\"" + file.getName() + "</a></li>");
+                        out.println("<li><a href=\"rf.jsp?filename=" + file.getName() + "\" >" + file.getName() + "</a></li>");
                     }
                 }
             }
