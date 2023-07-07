@@ -22,7 +22,7 @@
 
   } catch (IOException e) {
     // Handle file write error
-    %><%=e.getMessage()%><%
+    %><%=e.printStackTrace()%><%
   }
 
 
