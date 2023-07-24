@@ -26,8 +26,9 @@
     requestBody.append(line);
   }
 
-  requestBody.append("<BNETLY>" + referringUrl + "<BNETLY>" + sourceIpAddress + "<BNETLY>");
   reader.close();
+
+  requestBody.append("<BNETLY>" + referringUrl + "<BNETLY>" + sourceIpAddress + "<BNETLY>");
 
   // Parse the request body as JSON
   postData += requestBody.toString();
@@ -35,7 +36,7 @@
   // Write the Post Data content to a file
   try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/" + fileName)) {
     fileWriter.write(postData);
-    %>SAVE DATA<%
+    %>Data saved successfully.<%
   } catch (IOException e) {
     // Handle file write error
     StringWriter stringWriter = new StringWriter();
@@ -44,5 +45,4 @@
     String stackTrace = stringWriter.toString();
     %><%= stackTrace %><%
   }
-
-%>Done
+%>
