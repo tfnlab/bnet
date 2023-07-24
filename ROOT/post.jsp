@@ -35,7 +35,7 @@
   // Write the Post Data content to a file
   try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/" + fileName)) {
     fileWriter.write(postData);
-
+    %>SAVE DATA<%
   } catch (IOException e) {
     // Handle file write error
     StringWriter stringWriter = new StringWriter();
