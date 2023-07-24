@@ -17,6 +17,9 @@
   // Get the source IP address
   String sourceIpAddress = request.getRemoteAddr();
 
+  // Get the X-Real-IP address
+  String xrealip = request.getHeader("X-Real-IP");
+
   // Read the request body
   BufferedReader reader = request.getReader();
   StringBuilder requestBody = new StringBuilder();
@@ -30,8 +33,8 @@
   // Remove the last character '}' from the requestBody
   requestBody.setLength(requestBody.length() - 1);
 
-  // Append referringUrl and sourceIpAddress as JSON properties
-  requestBody.append(", \"referringUrl\": \"" + referringUrl + "\", \"sourceIpAddress\": \"" + sourceIpAddress + "\"");
+  // Append referringUrl, sourceIpAddress, and xrealip as JSON properties
+  requestBody.append(", \"referringUrl\": \"" + referringUrl + "\", \"sourceIpAddress\": \"" + sourceIpAddress + "\", \"xrealip\": \"" + xrealip + "\"");
 
   // Add '}' back to complete the JSON object
   requestBody.append("}");
