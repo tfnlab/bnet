@@ -11,7 +11,6 @@
   // Iterate through the request parameters and add them to the POST data
   String postData = "Data Request";
 
-
   // Get referring URL
   String referringUrl = request.getHeader("Referer");
 
@@ -28,14 +27,18 @@
 
   reader.close();
 
-  requestBody.append("<BNETLY>" + referringUrl + "<BNETLY>" + sourceIpAddress + "<BNETLY>");
+  // Remove the last character '}' from the requestBody
+  requestBody.setLength(requestBody.length() - 1);
 
-  // Parse the request body as JSON
-  postData += requestBody.toString();
+  // Append referringUrl and sourceIpAddress as JSON properties
+  requestBody.append(", \"referringUrl\": \"" + referringUrl + "\", \"sourceIpAddress\": \"" + sourceIpAddress + "\"");
+
+  // Add '}' back to complete the JSON object
+  requestBody.append("}");
 
   // Write the Post Data content to a file
   try (FileWriter fileWriter = new FileWriter("/var/lib/tomcat9/webapps/pdf/bnet/" + fileName)) {
-    fileWriter.write(postData);
+    fileWriter.write(requestBody.toString());
     %>Data saved successfully.<%
   } catch (IOException e) {
     // Handle file write error
